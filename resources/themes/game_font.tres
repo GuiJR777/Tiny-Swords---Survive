@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cja3mv6si3ro2"]
+
+[ext_resource type="FontFile" uid="uid://dp0kit8fejimc" path="res://assets/fonts/Gamer.ttf" id="1_ju1fi"]
+
+[resource]
+default_font = ExtResource("1_ju1fi")
+default_font_size = 80

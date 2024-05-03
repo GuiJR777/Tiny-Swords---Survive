@@ -1,0 +1,91 @@
+[gd_scene load_steps=4 format=3 uid="uid://blrb7f181e2fa"]
+
+[ext_resource type="Script" path="res://ramires_tech_commons/Menus/Scripts/main_menu.gd" id="1_8joj4"]
+[ext_resource type="Theme" uid="uid://cja3mv6si3ro2" path="res://resources/themes/game_font.tres" id="1_oukfn"]
+[ext_resource type="PackedScene" uid="uid://b06nk681k1ij7" path="res://ramires_tech_commons/Transition/Scenes/transition.tscn" id="2_d0pjh"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8joj4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Background" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 48
+
+[node name="Title" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 48
+
+[node name="GameTitle" type="Label" parent="CanvasLayer/MarginContainer/Title"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("1_oukfn")
+theme_override_colors/font_shadow_color = Color(0.279357, 0.279357, 0.279357, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 10
+theme_override_font_sizes/font_size = 240
+text = "Game Title"
+
+[node name="Subtitle" type="Label" parent="CanvasLayer/MarginContainer/Title"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("1_oukfn")
+theme_override_colors/font_color = Color(0.43712, 0.43712, 0.43712, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 10
+theme_override_font_sizes/font_size = 120
+text = "Game Subtitle"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 48
+
+[node name="StartButton" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme = ExtResource("1_oukfn")
+theme_override_colors/font_hover_color = Color(0.338473, 0.338473, 0.338473, 1)
+text = "Start Game"
+flat = true
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme = ExtResource("1_oukfn")
+theme_override_colors/font_hover_color = Color(0.338473, 0.338473, 0.338473, 1)
+text = "Quit"
+flat = true
+
+[node name="Transition" parent="." instance=ExtResource("2_d0pjh")]
+unique_name_in_owner = true
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

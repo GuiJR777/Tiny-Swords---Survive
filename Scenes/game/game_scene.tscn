@@ -1,0 +1,84 @@
+[gd_scene load_steps=7 format=3 uid="uid://bcs861oei30o5"]
+
+[ext_resource type="Theme" uid="uid://cja3mv6si3ro2" path="res://resources/themes/game_font.tres" id="1_0xdkl"]
+[ext_resource type="Script" path="res://scripts/game/game_scene.gd" id="1_nt2hj"]
+[ext_resource type="PackedScene" uid="uid://b06nk681k1ij7" path="res://ramires_tech_commons/Transition/Scenes/transition.tscn" id="2_2b5q5"]
+[ext_resource type="Script" path="res://scripts/game/game_input_handler.gd" id="3_ovk8t"]
+[ext_resource type="PackedScene" uid="uid://d3ldjp1b8mbt1" path="res://ramires_tech_commons/Menus/Scenes/pause_menu.tscn" id="5_c0edl"]
+[ext_resource type="PackedScene" uid="uid://0tav8166jeww" path="res://Scenes/Characters/Player/player.tscn" id="6_en12h"]
+
+[node name="GameScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nt2hj")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.905769, 0.905769, 0.905769, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 48
+
+[node name="Title" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 48
+
+[node name="GameTitle" type="Label" parent="CanvasLayer/MarginContainer/Title"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("1_0xdkl")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.279357, 0.279357, 0.279357, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 10
+theme_override_font_sizes/font_size = 240
+text = "Game Hear"
+
+[node name="Subtitle" type="Label" parent="CanvasLayer/MarginContainer/Title"]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("1_0xdkl")
+theme_override_colors/font_color = Color(0.43712, 0.43712, 0.43712, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 10
+theme_override_font_sizes/font_size = 120
+text = "Replace this Scene for your game scene"
+autowrap_mode = 2
+
+[node name="Transition" parent="." instance=ExtResource("2_2b5q5")]
+
+[node name="GameInputHandler" type="Node" parent="."]
+script = ExtResource("3_ovk8t")
+
+[node name="PauseMenu" parent="." instance=ExtResource("5_c0edl")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="Player" parent="." instance=ExtResource("6_en12h")]
+position = Vector2(1350, 794)
+
+[connection signal="pause" from="GameInputHandler" to="." method="_on_game_input_handler_pause"]

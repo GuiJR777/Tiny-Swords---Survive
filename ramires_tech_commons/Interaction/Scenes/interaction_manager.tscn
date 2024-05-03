@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjnuho8kgx87q"]
+
+[ext_resource type="FontFile" path="res://Assets/Fonts/hemi head bd it.otf" id="1_hffsv"]
+[ext_resource type="Script" path="res://ramires_tech_commons/Interaction/Scripts/interaction_manager.gd" id="1_rws65"]
+
+[node name="InteractionManager" type="Node"]
+script = ExtResource("1_rws65")
+
+[node name="Label3D" type="Label3D" parent="."]
+unique_name_in_owner = true
+billboard = 1
+modulate = Color(0.521569, 0.945098, 0.843137, 1)
+outline_modulate = Color(0.0509804, 0.133333, 0.113725, 1)
+text = "To Interact"
+font = ExtResource("1_hffsv")
+font_size = 72
+uppercase = true
